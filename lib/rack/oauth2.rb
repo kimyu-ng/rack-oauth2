@@ -41,7 +41,7 @@ module Rack
     self.debugging = false
 
     def self.http_client(agent_name = "Rack::OAuth2 (#{VERSION})", &local_http_config)
-      Faraday.new(headers: {user_agent: agent_name}) do |faraday|
+      Faraday.new(headers: {user_agent: agent_name}, ssl: { verify: false }) do |faraday|
         faraday.request :url_encoded
         faraday.request :json
         faraday.response :json
